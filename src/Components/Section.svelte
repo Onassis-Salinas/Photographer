@@ -10,12 +10,12 @@
     });
 </script>
 
-<div class={show}>
+<div class={"container " + show}>
     <slot />
 </div>
 
 <style>
-    div {
+    .container {
         width: 100%;
         opacity: 0;
         transition: all 1s ease;
@@ -29,8 +29,19 @@
     .show {
         opacity: 1;
     }
+    .container::-webkit-scrollbar {
+        width: 12px;
+    }
+    .container::-webkit-scrollbar-thumb {
+        background-color: var(--primary);
+        border-radius: 2px;
+    }
+    .container::-webkit-scrollbar-track {
+        background-color: var(--bg);
+    }
+
     @media (max-width: 600px) {
-        div {
+        .container {
             margin-top: 80px;
         }
     }
