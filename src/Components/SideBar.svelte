@@ -19,7 +19,7 @@
 <style>
     h4 {
         font-size: 40px;
-        margin: 10px 0 30px 0;
+        margin: 10px 0 60px 0;
     }
 
     #sidebar {

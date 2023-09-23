@@ -3,12 +3,11 @@
     import Section from "../Components/Section.svelte";
 
     let images = [
-        "https://media.photographycourse.net/wp-content/uploads/2022/04/08162559/15-Highly-Creative-Product-Photography-Ideas-reflections.jpeg",
-        "https://assets.easyweddings.com/files/2022/07/28112816/Blue-Ginger-Photography-Wedding-Photographer.jpg",
-        "https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature-1280x720.jpg",
-        "https://expertphotography.b-cdn.net/wp-content/uploads/2019/11/Nighttime-Event-Photography-outside-colour.jpg",
-        "https://www.jdinstitute.edu.in/media/2021/07/Types-of-Fashion-Photography-Thumbnail.jpg",
-        "",
+        "https://media.photographycourse.net/wp-content/uploads/2022/04/08162559/15-Highly-Creative-Product-Photography-Ideas-reflections.jpeg", //reloj
+        "https://assets.easyweddings.com/files/2022/07/28112816/Blue-Ginger-Photography-Wedding-Photographer.jpg", //boda
+        "https://www.adorama.com/alc/wp-content/uploads/2018/11/landscape-photography-tips-yosemite-valley-feature-1280x720.jpg", //monte
+        "https://expertphotography.b-cdn.net/wp-content/uploads/2019/11/Nighttime-Event-Photography-outside-colour.jpg", //noche
+        "https://www.jdinstitute.edu.in/media/2021/07/Types-of-Fashion-Photography-Thumbnail.jpg", //rojo
     ];
     let index = 0;
     let index2 = 1;
@@ -20,23 +19,19 @@
 
     function startInterval() {
         interval = setInterval(() => {
-            index > index2 ? (index2 += 2) : (index += 2);
-
-            index = index >= images.length - 1 ? 0 : index;
-            index2 = index2 >= images.length - 1 ? 0 : index2;
-
-            index === 0 && index2 === images.length - 1 ? (index2 = 1) : null;
-            index2 === 0 && index === images.length - 1 ? (index = 1) : null;
+            console.log(index === images.length - 1 && index2 === 0);
+            if ((index === images.length - 1 && index2 === 0) || (index2 === images.length - 1 && index === 0)) {
+                index === images.length - 1 && index2 === 0 ? (index = 1) : null;
+                index2 === images.length - 1 && index === 0 ? (index2 = 1) : null;
+            } else {
+                index > index2 ? (index2 += 2) : (index += 2);
+                index = index > images.length - 1 ? 0 : index;
+                index2 = index2 > images.length - 1 ? 0 : index2;
+            }
 
             show = !show;
             show2 = !show2;
-            console.log("imagen1- " + index.toString());
-            console.log("imagen2- " + index2.toString());
-        }, 5000);
-    }
-
-    function stopInterval() {
-        clearInterval(interval);
+        }, 2000);
     }
 
     onMount(() => {
@@ -44,7 +39,7 @@
     });
 
     onDestroy(() => {
-        stopInterval();
+        clearInterval(interval);
     });
 </script>
 
