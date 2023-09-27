@@ -13,10 +13,8 @@ a{
     text-decoration: none;
     color: var(--text);
     font-size: 20px;
+    transition: all .2s ease;
 }
-
-@media (max-width: 600px) {
-    body {
-        /* height: calc(100lvh - 80px); */
-    }
+a:hover{
+    transform: translateX(10px);
 }
